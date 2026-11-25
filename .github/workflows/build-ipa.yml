@@ -10,7 +10,9 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-14
+    # macos-14 已退役（2026），label 匹配不到 runner 会被瞬间 cancel。
+    # macos-15 / macos-latest 实测可用。
+    runs-on: macos-15
     timeout-minutes: 60
 
     steps:
