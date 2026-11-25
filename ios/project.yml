@@ -46,11 +46,15 @@ targets:
         CLANG_ENABLE_OBJC_ARC: YES
         OTHER_LDFLAGS:
           - "-ObjC"
+          # 显式写死 rpath。首版只靠 LD_RUNPATH_SEARCH_PATHS 没生效，
+          # 产物里一个 LC_RPATH 都没有 → dyld 解析不了
+          # @rpath/Python.framework/Python，App 启动即崩。
+          - "-rpath"
+          - "@executable_path/Frameworks"
         HEADER_SEARCH_PATHS:
           - "$(SRCROOT)/Python.xcframework/ios-arm64/Python.framework/Headers"
           - "$(SRCROOT)/Python.xcframework/ios-arm64/include/python3.11"
-        LD_RUNPATH_SEARCH_PATHS:
-          - "@executable_path/Frameworks"
+        LD_RUNPATH_SEARCH_PATHS: "@executable_path/Frameworks"
     postCompileScripts:
       - name: "Install Python stdlib (linux-safe, ad-hoc sign)"
         basedOnDependencyAnalysis: false
