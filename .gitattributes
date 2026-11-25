@@ -1,0 +1,24 @@
+# 统一换行符：仓库内一律 LF。
+# 原因：GitHub Actions 的 run: 脚本内容和 .sh 文件若带 CRLF，
+# 在 macOS runner 上会以 `\r` 结尾导致 `source` / `set -e` 报错或静默失败。
+* text=auto eol=lf
+
+*.sh        text eol=lf
+*.py        text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.plist     text eol=lf
+*.json      text eol=lf
+*.m         text eol=lf
+*.h         text eol=lf
+*.md        text eol=lf
+
+# 二进制/资源不参与换行转换
+*.png       binary
+*.jpg       binary
+*.apk       binary
+*.ipa       binary
+*.dylib     binary
+*.so        binary
+*.a         binary
+*.db        binary
