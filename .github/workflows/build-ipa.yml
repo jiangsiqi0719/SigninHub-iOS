@@ -1,8 +1,7 @@
 name: build-ipa
 
 on:
-  push:
-    branches: [main, ios]
+  # 只保留手动触发：Contents API 每次提交都会触发 push 事件，会产生重复 run。
   workflow_dispatch:
 
 permissions:
